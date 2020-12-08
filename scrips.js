@@ -16,16 +16,24 @@ let l1 = 100,
     a2 = pi / 8,
     cos = Math.cos,
     sin = Math.sin,
-    av_1 = 0,
-    av_2 = 0;
+    a1_v = 0,
+    a2_v = 0,
+    a1_a = 0, 
+    a2_a = 0,
+    g = 1;
 
 
 
 function draw() {
     let x1 = l1 * sin(a1),
-        y1 = l1 * cos(a1);
+        y1 = l1 * cos(a1),
+        a1_a = (-g * (2 * m1 + m2) * sin(a1) - m2 * g * sin(a1 - 2 * a2) - 2 * sin(a1 - a2) * m2 * (a2_v * a2_v * l2 +  a1_v * a1_v * l1 * cos(a1 - a2))) / (l1 * (2 * m1 + m2 - m2 * cos(2 * a1 - 2 * a2))),
+        a2_a = (2 * sin(a1 - a2) * (a1_v * a1_v * l1 * (m1 + m2) + g * (m1 + m2) * cos(a1) + a2_v * a2_v * l2 * m2 * cos(a1 - a2))) / (l2 * (2 * m1 + m2 - m2 * cos(2 * a1 - 2 * a2)));
 
-        ctx.beginPath();
+
+
+
+    ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(x1, y1);
     ctx.stroke();
@@ -45,8 +53,10 @@ function draw() {
     ctx.arc(x2, y2, m2, 0, pi * 2);
     ctx.fill();  
     
-    a1+= 0.1;
-    a2+= 0.2;
+    a1_v += a1_a;
+    a2_v += a2_a;
+    a1 += a1_v;
+    a2 += a2_v;
 }
 
 function reDraw(){
