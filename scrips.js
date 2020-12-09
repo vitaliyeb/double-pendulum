@@ -12,7 +12,7 @@ canvas.height = height;
 canvas2.width = width;
 canvas2.height = height;
 ctx2.translate(width / 2, height / 2);
-ctx.widhtS = 10;
+ctx2.lineWidth  = 1;
 
 let l1 = 100,
     l2 = 100,
